@@ -16,15 +16,39 @@ class MainActivity : AppCompatActivity() {
 
         val calculatorViewModel: CalculatorViewModel by viewModels()
         calculatorViewModel.getResult().observe(this) {
-            binding.resultText.text = it.toString()
+            binding.resultText.text = it
         }
 
         with(binding) {
-            resultText.text = calculatorViewModel.getResult().value.toString()
-            val clickListener = KeypadAdapter.DigitClickListener {
-                calculatorViewModel.updateResult(it)
+            listOf(
+                zeroButton,
+                oneButton,
+                twoButton,
+                threeButton,
+                fourButton,
+                fiveButton,
+                sixButton,
+                sevenButton,
+                eightButton,
+                nineButton
+            ).forEachIndexed { index, element ->
+                element.apply {
+                    text = index.toString()
+                    setOnClickListener { calculatorViewModel.insertDigit(index) }
+                }
             }
-            keypadList.adapter = KeypadAdapter(clickListener)
+            listOf(dotButton to ".", sumButton to "=", divButton to "/").forEach {
+                it.first.text = it.second
+            }
+            with(calculatorViewModel) {
+                resultText.text = getResult().value
+                deleteButton.setOnClickListener { removeEndDigit() }
+                divButton.setOnClickListener { insertDivOp() }
+                mulButton.setOnClickListener { insertMulOp() }
+                subButton.setOnClickListener { insertMinusOp() }
+                addButton.setOnClickListener { insertPlusOp() }
+                sumButton.setOnClickListener { calculateResult() }
+            }
         }
     }
 }
