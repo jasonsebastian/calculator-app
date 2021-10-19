@@ -1,9 +1,9 @@
-package com.example.android.calculator
+package com.jasonsb.calculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.example.android.calculator.databinding.ActivityMainBinding
+import com.jasonsb.calculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

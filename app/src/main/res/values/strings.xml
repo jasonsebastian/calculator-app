@@ -1,9 +1,9 @@
 <resources>
   <string name="app_name">Calculator</string>
-  <string name="backspace_button">Backspace button</string>
-  <string name="add_button">Add button</string>
-  <string name="subtract_button">Subtract button</string>
-  <string name="multiply_button">Multiply button</string>
-  <string name="divide_button">Divide button</string>
+  <string name="backspace">Backspace</string>
+  <string name="add">Add</string>
+  <string name="subtract">Subtract</string>
+  <string name="multiply">Multiply</string>
+  <string name="divide">Divide</string>
   <string name="clear_symbol">C</string>
 </resources>

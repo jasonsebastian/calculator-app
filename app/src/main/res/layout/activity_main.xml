@@ -20,7 +20,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:text="1" />
+    tools:text="17" />
 
   <Button
     android:id="@+id/seven_button"
@@ -172,7 +172,7 @@
     style="@style/Widget.MaterialComponents.Button.TextButton.IconOnly"
     android:layout_width="wrap_content"
     android:layout_height="0dp"
-    android:contentDescription="@string/backspace_button"
+    android:contentDescription="@string/backspace"
     android:textSize="24sp"
     app:layout_constraintBottom_toTopOf="@+id/div_button"
     app:layout_constraintEnd_toEndOf="parent"
@@ -184,7 +184,7 @@
     style="@style/Widget.MaterialComponents.Button.TextButton"
     android:layout_width="wrap_content"
     android:layout_height="0dp"
-    android:contentDescription="@string/divide_button"
+    android:contentDescription="@string/divide"
     android:textSize="24sp"
     app:layout_constraintBottom_toTopOf="@+id/mul_button"
     app:layout_constraintEnd_toEndOf="parent"
@@ -196,7 +196,7 @@
     style="@style/Widget.MaterialComponents.Button.TextButton.IconOnly"
     android:layout_width="wrap_content"
     android:layout_height="0dp"
-    android:contentDescription="@string/multiply_button"
+    android:contentDescription="@string/multiply"
     app:icon="@drawable/ic_baseline_clear_24"
     app:layout_constraintBottom_toTopOf="@+id/sub_button"
     app:layout_constraintEnd_toEndOf="parent"
@@ -207,7 +207,7 @@
     style="@style/Widget.MaterialComponents.Button.TextButton.IconOnly"
     android:layout_width="wrap_content"
     android:layout_height="0dp"
-    android:contentDescription="@string/subtract_button"
+    android:contentDescription="@string/subtract"
     app:icon="@drawable/ic_baseline_remove_24"
     app:layout_constraintBottom_toTopOf="@+id/add_button"
     app:layout_constraintEnd_toEndOf="parent"
@@ -218,7 +218,7 @@
     style="@style/Widget.MaterialComponents.Button.TextButton.IconOnly"
     android:layout_width="wrap_content"
     android:layout_height="0dp"
-    android:contentDescription="@string/add_button"
+    android:contentDescription="@string/add"
     app:icon="@drawable/ic_outline_add_24"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"

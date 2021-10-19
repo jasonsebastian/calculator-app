@@ -7,8 +7,8 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.android.calculator"
-        minSdk 21
+        applicationId "com.jasonsb.calculator"
+        minSdk 23
         targetSdk 31
         versionCode 1
         versionName "1.0"

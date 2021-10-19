@@ -1,4 +1,4 @@
-package com.example.android.calculator
+package com.jasonsb.calculator
 
 
 enum class Operators(val sign: Char, val precedence: Int) {
