@@ -10,13 +10,21 @@ class CalculatorViewModel : ViewModel() {
     private val result = MutableLiveData(defaultResult)
     fun getResult(): LiveData<String> = result
 
+    private val isDelete = MutableLiveData(true)
+    fun getIsDelete(): LiveData<Boolean> = isDelete
+
     /**
      * Calculate the expression given by `result`.
      */
     fun calculateResult() {
         result.value?.let {
             result.value = Parser.evaluateExpression(it).toInt().toString()
+            toggleIsDelete()
         }
+    }
+
+    private fun toggleIsDelete() {
+        isDelete.value = isDelete.value?.not()
     }
 
     /**
@@ -29,11 +37,18 @@ class CalculatorViewModel : ViewModel() {
     }
 
     /**
-     * Remove digit at the end of `result`.
+     * If `isDelete` is true, remove digit at the end of `result`. Else, clear `result`.
      */
-    fun removeEndDigit() {
+    fun removeResult() {
         result.value?.let {
-            if (it.isNotEmpty()) result.value = it.dropLast(1)
+            if (isDelete.value!!) {
+                if (it.isNotEmpty()) {
+                    result.value = it.dropLast(1)
+                }
+            } else {
+                result.value = defaultResult
+                toggleIsDelete()
+            }
         }
     }
 
