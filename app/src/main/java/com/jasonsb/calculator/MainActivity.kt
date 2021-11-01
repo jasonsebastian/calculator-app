@@ -2,6 +2,7 @@ package com.jasonsb.calculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.jasonsb.calculator.databinding.ActivityMainBinding
 
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         with(calculatorViewModel) {
             getResult().observe(this@MainActivity) {
-                binding.resultText.text = it
+                binding.resultText.text = it.replace('-', Operators.MINUS.sign)
             }
 
             getIsDelete().observe(this@MainActivity) {
@@ -66,7 +67,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun populateSymbols() {
         with(binding) {
-            listOf(dotButton to ".", sumButton to "=", divButton to "/").forEach {
+            listOf(
+                divButton to Operators.DIVISION.sign.toString(),
+                dotButton to ".",
+                sumButton to "="
+            ).forEach {
                 it.first.text = it.second
             }
         }
@@ -76,11 +81,20 @@ class MainActivity : AppCompatActivity() {
         with(binding) {
             with(calculatorViewModel) {
                 deleteButton.setOnClickListener { removeResult() }
+                dotButton.setOnClickListener { insertDotOp() }
                 divButton.setOnClickListener { insertDivOp() }
                 mulButton.setOnClickListener { insertMulOp() }
                 subButton.setOnClickListener { insertMinusOp() }
                 addButton.setOnClickListener { insertPlusOp() }
-                sumButton.setOnClickListener { calculateResult() }
+                sumButton.setOnClickListener {
+                    try {
+                        calculateResult()
+                    } catch (e: BadSyntaxException) {
+                        // Do nothing
+                    } catch (e: Exception) {
+                        Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
     }

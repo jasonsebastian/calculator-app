@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class CalculatorViewModel : ViewModel() {
+
+    private val parser = Parser()
+
     private val defaultResult = ""
 
     private val result = MutableLiveData(defaultResult)
@@ -18,7 +21,7 @@ class CalculatorViewModel : ViewModel() {
      */
     fun calculateResult() {
         result.value?.let {
-            result.value = Parser.evaluateExpression(it).toInt().toString()
+            result.value = parser.evaluateExpression(it).toString()
             toggleIsDelete()
         }
     }
@@ -53,6 +56,13 @@ class CalculatorViewModel : ViewModel() {
     }
 
     /**
+     * Callback for dot button.
+     */
+    fun insertDotOp() {
+        result.value = result.value.plus('.')
+    }
+
+    /**
      * Callback for div button.
      */
     fun insertDivOp() = insertOperator(Operators.DIVISION)
@@ -77,7 +87,15 @@ class CalculatorViewModel : ViewModel() {
      */
     private fun insertOperator(operator: Operators) {
         result.value?.let {
-            if (it.isNotEmpty() && it.last() !in Operators.values().map { op -> op.sign }) {
+            if (it.isEmpty()) {
+                if (operator.sign == Operators.MINUS.sign) {
+                    result.value = it.plus(Operators.MINUS.sign)
+                }
+            } else if (it.last() in listOf(Operators.MULTIPLY.sign, Operators.DIVISION.sign)) {
+                if (operator.sign == Operators.MINUS.sign) {
+                    result.value = it.plus(Operators.MINUS.sign)
+                }
+            } else if (it.last() !in Operators.values().map { op -> op.sign }) {
                 result.value = it.plus(operator.sign)
             }
         }
