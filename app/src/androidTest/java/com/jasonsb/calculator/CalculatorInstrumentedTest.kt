@@ -68,4 +68,38 @@ class CalculatorInstrumentedTest {
         }
         onView(withId(R.id.result_text)).check(matches(withText("10")))
     }
+
+    @Test
+    fun twoPointFiveTimesFourSum_ten() {
+        listOf(
+            R.id.two_button,
+            R.id.dot_button,
+            R.id.five_button,
+            R.id.mul_button,
+            R.id.four_button,
+            R.id.sum_button
+        ).forEach {
+            onView(withId(it)).perform(click())
+        }
+        onView(withId(R.id.result_text)).check(matches(withText("10")))
+    }
+
+    @Test
+    fun fourDivFiveSumTimesTwelvePointFiveSum() {
+        listOf(
+            R.id.four_button,
+            R.id.div_button,
+            R.id.five_button,
+            R.id.sum_button,
+            R.id.mul_button,
+            R.id.one_button,
+            R.id.two_button,
+            R.id.dot_button,
+            R.id.five_button,
+            R.id.sum_button
+        ).forEach {
+            onView(withId(it)).perform(click())
+        }
+        onView(withId(R.id.result_text)).check(matches(withText("10")))
+    }
 }
